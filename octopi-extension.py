@@ -56,10 +56,11 @@ async def main():
         "id": "malaria",
         "type": "bioimageio-chatbot-extension",
         "name": "Malaria Data Explorer",
-        "description": "This tool will explore the malaria data by running python scripts in a Jupyter notebook. Note: User won't see the jupyter notebook outputs, to respond to the user, you must render results as markdown.",
+        "description": "This tool will explore the malaria data by running python scripts in a Jupyter notebook. Note: User won't see the jupyter notebook outputs, to respond to the user, you must render results as markdown. In case of error, try to resolve it and run again.",
         "get_schema": malaria_exp.get_schema,
         "tools": malaria_exp.tools
     }
+    chatbot_extension['config'] = {"visibility": "public"}
     svc = await server.register_service(chatbot_extension)
     print(f"Extension service registered with id: {svc.id}, you can visit the service at: https://bioimage.io/chat?server={server_url}&extension={svc.id}&assistant=Skyler")
 
